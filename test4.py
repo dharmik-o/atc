@@ -64,12 +64,17 @@ def simulate_dfsm():
 
         # Simulate the DFSM
         current_state = start_state
+        print(f"Initial State: {current_state}")
         for char in input_string:
+            print(f"Current State: {current_state}, Input: {char}")
             if (current_state, char) in transition_dict:
                 current_state = transition_dict[(current_state, char)]
+                print(f"Transitioned to: {current_state}")
             else:
+                print(f"No transition found for state: {current_state} with input: {char}")
                 result_label.config(text="Result: String Rejected", fg="red")
                 return
+        print(f"Final State: {current_state}")
 
         # Check if the final state is accepting
         if current_state in accept_states:
